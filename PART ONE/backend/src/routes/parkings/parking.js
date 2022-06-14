@@ -11,14 +11,14 @@ module.exports = function(app) {
       var description = req.body.description;
       var adress = req.body.adress;
       var nbr_place = req.body.nbr_place;
-      var available_place = req.body.available_place;
+      var price = req.body.price;
 
       if (
         title === undefined ||
         description === undefined ||
         adress === undefined ||
         nbr_place === undefined ||
-        available_place === undefined
+        price === undefined
       ) {
         res
           .status(500)
@@ -32,7 +32,7 @@ module.exports = function(app) {
             .json({ success: false, error: "Parking already exists at this address" });
           return;
         } else {
-          create(res, title, description, adress, nbr_place, available_place);
+          create(res, title, description, adress, nbr_place, price);
           return;
         }
       });
@@ -63,14 +63,14 @@ module.exports = function(app) {
       var description = req.body.description;
       var adress = req.body.adress;
       var nbr_place = req.body.nbr_place;
-      var available_place = req.body.available_place;
+      var price = req.body.price;
 
       if (
         title === undefined ||
         description === undefined ||
         adress === undefined ||
         nbr_place === undefined ||
-        available_place === undefined
+        price === undefined
       ) {
         res
           .status(500)
@@ -82,7 +82,7 @@ module.exports = function(app) {
           res.status(404).json({ success: false, error: "Parking not found !" });
           return;
         } else {
-          update_parking_by_id(res, id, title, description, adress, nbr_place, available_place)
+          update_parking_by_id(res, id, title, description, adress, nbr_place, price)
           return;
         }
       });

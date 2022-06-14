@@ -1,9 +1,9 @@
 var db = require("../../config/db");
 
-exports.create = function (res, title, description, adress, nbr_place, available_place) {
+exports.create = function (res, title, description, adress, nbr_place, price) {
   db.execute(
-    "INSERT INTO `Parkings` (title, description, adress, nbr_place, available_place) VALUES (?, ?, ?, ?, ?)",
-    [title, description, adress, nbr_place, available_place],
+    "INSERT INTO `Parkings` (title, description, adress, nbr_place, price) VALUES (?, ?, ?, ?, ?)",
+    [title, description, adress, nbr_place, price],
     function (err, results, fields) {
       res.status(201).json({ success: true, msg: "Parking created successfully" });
     }
@@ -56,10 +56,10 @@ exports.delete_parking_by_id = function (res, id) {
   );
 };
 
-exports.update_parking_by_id = function (res, id, title, description, adress, nbr_place, available_place) {
+exports.update_parking_by_id = function (res, id, title, description, adress, nbr_place, price) {
   db.execute(
-    "UPDATE `Parkings` SET title = ?, description = ?, adress = ?, nbr_place = ?, available_place = ? WHERE id = ?",
-    [title, description, adress, nbr_place, available_place, id],
+    "UPDATE `Parkings` SET title = ?, description = ?, adress = ?, nbr_place = ?, price = ? WHERE id = ?",
+    [title, description, adress, nbr_place, price, id],
     function (err, results, fields) {
       db.execute(
         "SELECT * FROM `Parkings` WHERE id = ?",
