@@ -12,6 +12,8 @@ app.use(express.json());
 require("./routes/auth/auth")(app, bcrypt);
 app.use(express.json());
 require("./routes/users/user")(app, bcrypt);
+app.use(express.json());
+require("./routes/parkings/parking")(app);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

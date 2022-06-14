@@ -53,7 +53,7 @@ exports.check_account_id = function (res, id, callback) {
   );
 };
 
-exports.all_user = function (res, id) {
+exports.all_user = function (res) {
   db.query("SELECT * FROM `Users`", function (err, results, fields) {
     res.status(200).json({success: true, data: results});
   });
@@ -95,7 +95,7 @@ exports.update_user_by_id = function(res, id, email, pwd, fname, lname) {
   });
 }
 
-exports.get_user_by_id_or_mail = function (res, data, callback) {
+exports.get_user_by_id_or_mail = function (res, data) {
   db.execute(
     "SELECT * FROM `Users` WHERE email = ?",
     [data],
