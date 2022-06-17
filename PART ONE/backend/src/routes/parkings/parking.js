@@ -6,7 +6,7 @@ module.exports = function(app) {
       all_parkings(res);
     });
 
-    app.post("/api/parking", (req, res) => {
+    app.post("/api/parking", auth, (req, res) => {
       var title = req.body.title;
       var description = req.body.description;
       var adress = req.body.adress;

@@ -1,0 +1,187 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Parkings company API",
+      "version": "1.0.0",
+      "description": "Company operating parkings lots and takings reservations API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Users",
+            "description": "Users API"
+        },
+        {
+            "name": "Parkings",
+            "description": "Parkings API"
+        },
+        {
+            "name": "Reservations",
+            "description": "Reservations API"
+        }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "Users registration",
+                "parameters": [
+                    {
+                        "name": "Email",
+                        "in": "query",
+                        "required": true,
+                        "description": "The user email",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Firstname",
+                        "in": "query",
+                        "required": true,
+                        "description": "The user firstname",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Lastname",
+                        "in": "query",
+                        "required": true,
+                        "description": "The user lastname",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Password",
+                        "in": "query",
+                        "required": true,
+                        "description": "The user password",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceResponseUser"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": ["id", "email", "firstname", "lastname", "password"],
+            "properties": {
+                "id": {
+                    "type": "bigint"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "datetime"
+                }
+            }
+        },
+        "ServiceResponseUser": {
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/User"
+                    }
+                }
+            }
+        },
+        "Parking": {
+            "required": ["id", "title", "description", "adress", "nbr_place", "price"],
+            "properties": {
+                "id": {
+                    "type": "bigint"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "adress": {
+                    "type": "string"
+                },
+                "nbr_place": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "datetime"
+                }
+            }
+        },
+        "ServiceResponseParking": {
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Parking"
+                    }
+                }
+            }
+        },
+        "Reservation": {
+            "required": ["id", "u_id", "parking_id", "date"],
+            "properties": {
+                "id": {
+                    "type": "bigint"
+                },
+                "u_id": {
+                    "type": "bigint"
+                },
+                "parking_id": {
+                    "type": "bigint"
+                },
+                "date": {
+                    "type": "datetime"
+                },
+                "created_at": {
+                    "type": "datetime"
+                }
+            }
+        },
+        "ServiceResponseReservation": {
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Reservation"
+                    }
+                }
+            }
+        }
+    }
+}
